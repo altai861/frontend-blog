@@ -1,8 +1,17 @@
 import React from 'react'
+import Users from './Users'
+import useLogout from '../hooks/useLogout'
 
 const Admin = () => {
+
+  const logout = useLogout();
+
   return (
-    <div>Admin</div>
+    <div>
+      <h2>Admin</h2>
+      <Users />
+      <button onClick={() => logout()}>Log out</button>
+    </div>
   )
 }
 

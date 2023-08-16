@@ -6,6 +6,7 @@ import Login from './components/Login'
 import Admin from "./components/Admin"
 import RequireAuth from './components/RequireAuth'
 import Missing from './components/Missing'
+import PersistLogin from './components/PersistLogin'
 
 function App() {
 
@@ -16,9 +17,12 @@ function App() {
 
         <Route path="login" element={<Login />} />
 
-        <Route element={<RequireAuth allowedRoles={[1984]}/>}>
-          <Route path="admin" element={<Admin />} />
+        <Route element={<PersistLogin />}>
+          <Route element={<RequireAuth allowedRoles={[1984]}/>}>
+            <Route path="admin" element={<Admin />} />
+          </Route>
         </Route>
+        
 
 
         {/** 404 routes */}
