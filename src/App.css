@@ -4,6 +4,11 @@
     display: flex;
 }
 
+.App main {
+    padding: 2rem;
+}
+
+
 .navbar {
     background-color: black;
     font-family: 'PT sans', serif;
@@ -143,3 +148,18 @@
 
 
 
+.add-blog-button {
+    outline: none;
+    border-radius: 50%;
+    color: black;
+    background-color: white;
+    font-size: large;
+}
+
+#editorjs {
+    border: 0.5px solid black;
+}
+
+.new-blog-post {
+    padding: 1rem;
+}

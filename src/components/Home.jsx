@@ -26,7 +26,6 @@ Nunc convallis ipsum et sapien maximus, a mollis quam dictum. Phasellus faucibus
 
 Etiam vel massa eleifend, porttitor est nec, ullamcorper metus. Fusce convallis diam quis orci vehicula laoreet vitae vitae erat. Donec in facilisis dolor, at aliquam arcu. Maecenas magna odio, luctus ut iaculis ac, facilisis id lorem. Curabitur vitae dignissim nibh. Sed fringilla, lorem a pretium euismod, ipsum enim ullamcorper enim, eget tincidunt ante eros quis velit. Curabitur eget fermentum augue, non tristique sem. Nunc venenatis mi eu nunc malesuada, viverra imperdiet nisi tempor. Proin nisl erat, egestas a pulvinar id, hendrerit in ex. Maecenas at viverra velit. Maecenas finibus consectetur diam sit amet ultricies. Cras feugiat, massa id faucibus vulputate, est lacus ultrices ante, et porttitor eros dolor in orci. Maecenas sed diam sagittis, rhoncus ex quis, maximus nibh. Aliquam ut ullamcorper erat.
         </p>
-        <button onClick={() => navigate('/admin')}>Admin</button>
     </main>
   )
 }

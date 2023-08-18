@@ -7,6 +7,7 @@ import Admin from "./components/Admin"
 import RequireAuth from './components/RequireAuth'
 import Missing from './components/Missing'
 import PersistLogin from './components/PersistLogin'
+import NewBlog from './components/NewBlog'
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
         <Route element={<PersistLogin />}>
           <Route element={<RequireAuth allowedRoles={[1984]}/>}>
             <Route path="admin" element={<Admin />} />
+            <Route path="new-blog-post/:blog_id" element={<NewBlog />}/>
           </Route>
         </Route>
         

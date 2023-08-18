@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFacebookF } from "@fortawesome/free-brands-svg-icons"
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
@@ -9,6 +10,8 @@ import { faBasketball, faBook, faAtom, faFilm, faCode } from "@fortawesome/free-
  
 
 const Navbar = () => {
+
+    const navigate = useNavigate();
 
     const [menuClicked, setMenuClicked] = useState(false);
     const [screenWidth, setScreenWidth] = useState(window.innerWidth);
@@ -51,7 +54,7 @@ const Navbar = () => {
     
   return (
     <header className={!smallNav ? 'navbar' : 'small-navbar'}>
-        <h1 className='navbar-title'>Life Blog</h1>
+        <h1 className='navbar-title' onClick={() => navigate("/")}>Life Blog</h1>
         <hr />
         <p className='navbar-myname'>Altai Gantumur</p>
         <p className='navbar-myemail'>bbyyydriver@gmail.com</p>

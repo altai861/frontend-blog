@@ -31,8 +31,7 @@ const Users = () => {
         getUsers();
 
         return () => {
-            isMounted = false;
-            
+            isMounted = false; 
         }
     }, [])
   return (
