@@ -6,6 +6,8 @@ import { useNavigate, useLocation } from 'react-router-dom'
 const Blogs = () => {
 
     const [blogs, setBlogs] = useState();
+    const [drafts, setDrafts] = useState();
+    const [publishedBlogs, setPublishedBlogs] = useState();
     const axiosPrivate = useAxiosPrivate();
     const navigate = useNavigate();
     const location = useLocation();
@@ -28,6 +30,7 @@ const Blogs = () => {
         }
 
         getBlogs();
+        
 
         return () => {
             isMounted = false;
@@ -35,18 +38,37 @@ const Blogs = () => {
 
     }, [])
 
+    useEffect(() => {
+        if (blogs?.length) {
+            setDrafts(blogs.filter(item => !item.published))
+            setPublishedBlogs(blogs.filter(item => item.published))
+        }
+    }, [blogs])
+
   return (
     <article>
         <h2>
             Blogs List
         </h2>
-        { blogs?.length
+        <h3>Drafts</h3>
+
+        { drafts?.length
             ? (
                 <ul>
-                    {blogs.map((blog, i) => <li key={i}>{blog.title}</li>)}
+                    {drafts.map((blog, i) => <li key={i} onClick={() => navigate(`/draft/${blog._id}`)}>{blog._id}</li>)}
                 </ul>
                 
-            ) : <p>No blogs to display</p>
+            ) : <p>No Drafts to display</p>
+        }
+        <h3>Published Posts</h3>
+
+        { publishedBlogs?.length
+            ? (
+                <ul>
+                    {publishedBlogs.map((blog, i) => <li key={i} onClick={() => navigate(`/blog-post/${blog._id}`)}>{blog._id}</li>)}
+                </ul>
+                
+            ) : <p>No Blog post to display</p>
         }
     </article>
   )
