@@ -14,6 +14,8 @@ import InlineCode from '@editorjs/inline-code';
 import { useParams } from 'react-router-dom';
 import useAxiosPrivate from '../hooks/useAxiosPrivate';
 
+import { useNavigate } from 'react-router-dom';
+
 
 const DEFAULT_INITIAL_DATA = {
   "time": new Date().getTime(),
@@ -30,13 +32,15 @@ const DEFAULT_INITIAL_DATA = {
 
 const EditorComponent = () => {
 
-    const axiosPrivate = useAxiosPrivate()
+  const axiosPrivate = useAxiosPrivate()
 
   const ejInstance = useRef();
   const { blog_id } = useParams();
 
   const [title, setTitle] = useState('');
   const [cover, setCover] = useState('')
+
+  const navigate = useNavigate();
 
   const initEditor = () => {
     const editor = new EditorJS({
@@ -95,6 +99,10 @@ const EditorComponent = () => {
     })
   }
 
+  function isImage(url) {
+    return /\.(jpg|jpeg|png|webp|avif|gif|svg)$/.test(url);
+  }
+
   const save = async () => {
     if (ejInstance.current) {
       const content = await ejInstance.current.saver.save()
@@ -103,7 +111,8 @@ const EditorComponent = () => {
                 id: blog_id,
                 content: content,
                 title, 
-                cover
+                cover,
+                published: false
             })
             console.log(response.data)
         } catch (err) {
@@ -117,7 +126,7 @@ const EditorComponent = () => {
   const publish = async () => {
     if (ejInstance.current) {
       const content = await ejInstance.current.saver.save()
-      if (!title || !cover) {
+      if (!title || !cover || !isImage(cover)) {
         alert("To publish, you need title and cover page");
         return
       }
@@ -130,11 +139,25 @@ const EditorComponent = () => {
                 cover: cover,
             })
             console.log(response.data)
+            navigate("/admin")
         } catch (err) {
             console.error(err)
         }
 
       console.log(content);
+    }
+  }
+  const deleteBlog = async () => {
+    if (ejInstance.current) {
+        try {
+            const response = await axiosPrivate.delete(`/blogs/${blog_id}`, {
+                id: blog_id,
+            })
+            console.log(response.data)
+            navigate('/admin');
+        } catch (err) {
+            console.error(err)
+        }
     }
   }
 
@@ -151,28 +174,39 @@ const EditorComponent = () => {
 
   
   return (
-    <>
+    <div className="new-blog-editor">
+      <label htmlFor="title">Title: </label>
       <input 
         type="text"
-        value={title}
+        id="title"
+        value={title || ""}
         onChange={(e) => setTitle(e.target.value)}
       />
+      <label htmlFor="cover">Cover Image: </label>
       <input 
         type="url"
-        value={cover}
+        id="cover"
+        value={cover || ""}
         onChange={(e) => setCover(e.target.value)}
       />
+      { cover && <img className="cover-image" src={cover}/> }
       
       <div id="editorjs">
 
       </div>
-      <button onClick={save}>
-        Save
-      </button>
-      <button onClick={publish}>
-        Publish
-      </button>
-    </>
+
+      <div className="blog-post-buttons">
+        <button onClick={save}>
+          Save
+        </button>
+        <button onClick={publish}>
+          Publish
+        </button>
+        <button onClick={deleteBlog}>
+          Delete
+        </button>
+      </div>
+    </div>
   )
 };
 

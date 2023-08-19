@@ -26,13 +26,10 @@ function App() {
             <Route path="admin" element={<Admin />} />
             <Route path="new-blog-post/:blog_id" element={<NewBlog />}/>
             <Route path="draft/:blog_id" element={<Draft />} />
+            <Route path="blog-post/:blog_id" element={<BlogPost />} />
           </Route>
         </Route>
-
-
-        <Route path="blog-post/:blog_id" element={<BlogPost />} />
-        
-
+      
 
         {/** 404 routes */}
         <Route path="*" element={<Missing />}/>

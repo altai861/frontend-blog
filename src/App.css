@@ -158,8 +158,42 @@
 
 #editorjs {
     border: 0.5px solid black;
+    width: 100%;
+    margin: 1rem;
 }
 
 .new-blog-post {
     padding: 1rem;
+}
+
+.blog-post-editor, .draft-editor, .new-blog-editor {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.cover-image {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    width: 70%;
+}
+
+#title {
+    height: 3rem;
+    width: 80%;
+    font-size:xx-large;
+    font-weight: 600;
+    word-wrap: break-word;
+}
+
+.blog-post-buttons {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.blog-post-buttons > button {
+    margin-right: 1rem;
+    font-size: large;
 }
