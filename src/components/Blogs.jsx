@@ -2,6 +2,8 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import useAxiosPrivate from '../hooks/useAxiosPrivate'
 import { useNavigate, useLocation } from 'react-router-dom'
+import BlogWidgetDraft from './BlogWidgetDraft'
+import BlogWidgetPost from './BlogWidgetPost'
 
 const Blogs = () => {
 
@@ -55,7 +57,7 @@ const Blogs = () => {
         { drafts?.length
             ? (
                 <ul>
-                    {drafts.map((blog, i) => <li key={i} onClick={() => navigate(`/draft/${blog._id}`)}>{blog._id}</li>)}
+                    {drafts.map((blog, i) => <BlogWidgetDraft key={i} blog={blog}/>)}
                 </ul>
                 
             ) : <p>No Drafts to display</p>
@@ -65,7 +67,7 @@ const Blogs = () => {
         { publishedBlogs?.length
             ? (
                 <ul>
-                    {publishedBlogs.map((blog, i) => <li key={i} onClick={() => navigate(`/blog-post/${blog._id}`)}>{blog._id}</li>)}
+                    {publishedBlogs.map((blog, i) => <BlogWidgetPost key={i} blog={blog}/>)}
                 </ul>
                 
             ) : <p>No Blog post to display</p>

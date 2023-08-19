@@ -10,6 +10,7 @@ import PersistLogin from './components/PersistLogin'
 import NewBlog from './components/NewBlog'
 import Draft from './components/Draft'
 import BlogPost from './components/BlogPost'
+import BlogPostRead from './components/ForUsers/BlogPostRead'
 
 
 function App() {
@@ -29,6 +30,8 @@ function App() {
             <Route path="blog-post/:blog_id" element={<BlogPost />} />
           </Route>
         </Route>
+
+        <Route path="blog/:blog_id" element={<BlogPostRead />}/>
       
 
         {/** 404 routes */}
