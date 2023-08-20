@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import TYPES from '../../config/TYPES';
 
 const BlogWidget = ({ blog }) => {
@@ -26,14 +26,14 @@ const BlogWidget = ({ blog }) => {
     }
   }, [])
   return (
-    <div className="blog-post-widget" onClick={() => navigate(`/blog/${blog._id}`)}>
+    <Link className="blog-post-widget" to={`/blog/${blog._id}`}>
       { cover && <img src={cover}/> }
       <div>
         <h4>{title}</h4>
         <p>{TYPES[type]}</p>
       </div>
       
-    </div>
+    </Link>
   )
 }
 
