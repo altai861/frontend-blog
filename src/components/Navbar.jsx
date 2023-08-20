@@ -61,9 +61,12 @@ const Navbar = () => {
         <p className='navbar-myemail'>bbyyydriver@gmail.com</p>
         <div className='navbar-social-media'>
             <FontAwesomeIcon icon={faFacebookF} className='navbar-social-media-icon' />
-            <FontAwesomeIcon icon={faGithub} className='navbar-social-media-icon'/>
-            <FontAwesomeIcon icon={faTwitter} className='navbar-social-media-icon'/>
-            <FontAwesomeIcon icon={faInstagram} className='navbar-social-media-icon'/>
+            <Link to="https://github.com/altai861">
+                <FontAwesomeIcon icon={faGithub} className='navbar-social-media-icon'/>
+            </Link>
+            <Link to="https://twitter.com/bbyyydriver">
+                <FontAwesomeIcon icon={faTwitter} className='navbar-social-media-icon'/>
+            </Link>
         </div>
         <hr />
 
@@ -71,32 +74,46 @@ const Navbar = () => {
             ? (
                 <>
                 <h2 className='navbar-menu-title'>
-                    <FontAwesomeIcon icon={faCode} />
-                    Programming 
+                    <Link to="/programming">
+                        <FontAwesomeIcon icon={faCode} />
+                        Programming 
+                    </Link>
                 </h2>
                 <h2 className='navbar-menu-title'>
-                    <FontAwesomeIcon icon={faBasketball} />
-                    Basketball and Training 
+                    <Link to="/training">
+                        <FontAwesomeIcon icon={faBasketball} />
+                        Basketball and Training 
+                    </Link>
                 </h2>
                 <h2 className='navbar-menu-title'>
-                    <FontAwesomeIcon icon={faBook} />
-                    Books
+                    <Link to="/books">
+                        <FontAwesomeIcon icon={faBook} />
+                        Books
+                    </Link>
                 </h2>
                 <h2 className='navbar-menu-title'>
-                    <FontAwesomeIcon icon={faAtom} />
-                    Health and Science 
+                    <Link to="/health">
+                        <FontAwesomeIcon icon={faAtom} />
+                        Health and Science 
+                    </Link>
                 </h2>
                 <h2 className='navbar-menu-title'>
-                     <FontAwesomeIcon icon={faFilm} />
-                    Movies
+                    <Link to="/movies">
+                        <FontAwesomeIcon icon={faFilm} />
+                        Movies
+                    </Link>
                 </h2>
                 <h2 className='navbar-menu-title'>
-                     <FontAwesomeIcon icon={faPaintBrush} />
-                    Art and Drawing
+                    <Link to="/art">
+                        <FontAwesomeIcon icon={faPaintBrush} />
+                        Art and Drawing
+                    </Link>
                 </h2>
                 <h2 className='navbar-menu-title'>
-                     <FontAwesomeIcon icon={faPagelines} />
-                    Other
+                    <Link to="/other">
+                        <FontAwesomeIcon icon={faPagelines} />
+                        Other
+                    </Link> 
                 </h2>
                 
                 </>
@@ -107,32 +124,46 @@ const Navbar = () => {
                         <>
                         <button onClick={toggleMenu} className='navbar-menu-clicked'>Menu</button>
                         <h2 className='navbar-menu-title'>
-                            <FontAwesomeIcon icon={faCode} />
-                            Programming 
+                            <Link to="/programming">
+                                <FontAwesomeIcon icon={faCode} />
+                                Programming 
+                            </Link>
                         </h2>
                         <h2 className='navbar-menu-title'>
-                            <FontAwesomeIcon icon={faBasketball} />
-                            Basketball and Training 
+                            <Link to="/training">
+                                <FontAwesomeIcon icon={faBasketball} />
+                                Basketball and Training 
+                            </Link>
                         </h2>
                         <h2 className='navbar-menu-title'>
+                            <Link to="/books">
                             <FontAwesomeIcon icon={faBook} className='book-icon'/>
                             Books
+                            </Link>
                         </h2>
                         <h2 className='navbar-menu-title'>
-                            <FontAwesomeIcon icon={faAtom} />
-                            Health and Science 
+                            <Link to="/health">
+                                <FontAwesomeIcon icon={faAtom} />
+                                Health and Science 
+                            </Link>
                         </h2>
                         <h2 className='navbar-menu-title'>
-                            <FontAwesomeIcon icon={faFilm} />
-                            Movies
+                            <Link to="/movies">
+                                <FontAwesomeIcon icon={faFilm} />
+                                Movies
+                            </Link>
                         </h2>
                         <h2 className='navbar-mene-title'>
-                            <FontAwesomeIcon icon={faPaintBrush} />
-                            Art and Drawing
+                            <Link to="/art">
+                                <FontAwesomeIcon icon={faPaintBrush} />
+                                Art and Drawing
+                            </Link>
                         </h2>
                         <h2 className='navbar-mene-title'>
-                            <FontAwesomeIcon icon={faPagelines} />
-                            Other
+                            <Link to="/other">
+                                <FontAwesomeIcon icon={faPagelines} />
+                                Other
+                            </Link> 
                         </h2>
                         </>
                     )

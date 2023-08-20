@@ -1,30 +1,40 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
-import useTypeBlogs from '../../hooks/useTypeBlogs'
 import BlogWidget from './BlogWidget'
+import axios from '../../api/axios'
 
 const Programming = () => {
 
     const [blogs, setBlogs] = useState();
-    const getBlogs = useTypeBlogs("1");
+    
+    const getBlogs = async () => {
+        try {
+            const response = await axios.get('/blogsforusers');
+            setBlogs(response.data.filter(blog => blog.type === "1"))
+        } catch (error) {
+            console.error(error)
+        }
+    }
 
     useEffect(() => {
         if (!blogs) {
-            setBlogs(getBlogs);
+            getBlogs()
         }
+        console.log(blogs)
     }, [])
 
   return (
-    <div>Programming
+    <main>
+        <h2>Programming</h2>
         { blogs?.length
             ? (
-                <ul>
+                <ul className='blog-ul'>
                     {blogs.map((blog, i) => <BlogWidget key={i} blog={blog}/>)}
                 </ul>
                 
-            ) : <p>No Blog Post to display</p>
+            ) : <p>No Programmin Blog Post to display</p>
         }
-    </div>
+    </main>
   )
 }
 

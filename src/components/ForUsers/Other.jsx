@@ -1,22 +1,32 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
-import useTypeBlogs from '../../hooks/useTypeBlogs'
 import BlogWidget from './BlogWidget'
+import axios from '../../api/axios'
+
 
 const Other = () => {
 
     const [blogs, setBlogs] = useState();
-    const getBlogs = useTypeBlogs("7")
+    
+    const getBlogs = async () => {
+        try {
+            const response = await axios.get('/blogsforusers');
+            setBlogs(response.data.filter(blog => blog.type === "7"))
+            console.log(blogs)
+        } catch (error) {
+            console.error(error)
+        }
+    }
 
     useEffect(() => {
         if (!blogs) {
-            const type_blogs = getBlogs();
-            setBlogs(type_blogs);
+            getBlogs()
         }
     }, [])
 
   return (
-    <div>Other
+    <main>
+        <h2>Other</h2>
         { blogs?.length
             ? (
                 <ul>
@@ -25,7 +35,7 @@ const Other = () => {
                 
             ) : <p>No Blog Post to display</p>
         }
-    </div>
+    </main>
   )
 }
 

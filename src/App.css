@@ -70,6 +70,11 @@
     margin-bottom: 20px;
 }
 
+.navbar-social-media a {
+    text-decoration: none;
+    color: white;
+}
+
 .navbar-social-media-icon {
     font-size: 20px;
     margin-right: 8px;
@@ -77,6 +82,11 @@
 
 .navbar-menu-title svg{
     margin-right: 5px;
+}
+
+.navbar-menu-title a {
+    text-decoration: none;
+    color: white;
 }
 
 .homepage {
@@ -222,4 +232,9 @@
     margin-bottom: 1rem;
 }
 
+.blog-ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
 
