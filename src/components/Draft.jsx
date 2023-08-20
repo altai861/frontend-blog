@@ -28,6 +28,7 @@ const Draft = () => {
 
     const [title, setTitle] = useState('');
   const [cover, setCover] = useState('')
+  const [type, setType] = useState();
   
     const initEditor = () => {
       const editor = new EditorJS({
@@ -93,6 +94,7 @@ const Draft = () => {
             setInitialData(response.data.content)
             setTitle(response.data.title)
             setCover(response.data.cover)
+            setType(response.data.type)
             setPublishedOrNot(response.data.published)
         } catch (err) {
             console.error(err)
@@ -112,9 +114,11 @@ const Draft = () => {
                   content: content,
                   title,
                   cover,
-                  published: publishedORNot
+                  published: publishedORNot,
+                  type,
               })
               console.log(response.data)
+              alert('Blog Post Saved')
           } catch (err) {
               console.error(err)
           }
@@ -126,8 +130,8 @@ const Draft = () => {
     const publish = async () => {
         if (ejInstance.current) {
           const content = await ejInstance.current.saver.save()
-          if (!title || !cover || !isImage(cover)) {
-            alert("To publish, you need title and cover page");
+          if (!title || !cover || !isImage(cover) || !type) {
+            alert("To publish, you need title, cover page and blog type");
             return
           }
             try {
@@ -137,6 +141,7 @@ const Draft = () => {
                     published: true,
                     title: title,
                     cover: cover,
+                    type,
                 })
                 console.log(response.data)
                 navigate('/admin')
@@ -182,7 +187,7 @@ const Draft = () => {
   
     
     return (
-      <div className="draft-editor">
+      <main className="draft-editor">
       <label htmlFor="title">Title: </label>
       <input 
         type="text"
@@ -198,6 +203,19 @@ const Draft = () => {
         onChange={(e) => setCover(e.target.value)}
       />
       { cover && <img className="cover-image" src={cover}/> }
+
+      <label htmlFor='type-select'>Type of Blog: </label>
+      <select id="type-select" value={type || ''} onChange={(e) => setType(e.target.value)}>
+      <option value="">Select blog type</option>
+        <option value="1">Programming</option>
+        <option value="2">Basketball and Training</option>
+        <option value="3">Books</option>
+        <option value="4">Health and Science</option>
+        <option value="5">Movies</option>
+        <option value="6">Art and Drawing</option>
+        <option value="7">Other</option>
+      </select>
+
         <div id="editorjs">
   
         </div>
@@ -212,7 +230,7 @@ const Draft = () => {
             Delete
         </button>
         </div>
-      </div>
+      </main>
     )
 }
 

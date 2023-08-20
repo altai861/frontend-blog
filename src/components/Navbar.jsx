@@ -1,13 +1,14 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFacebookF } from "@fortawesome/free-brands-svg-icons"
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
 import { faTwitter } from '@fortawesome/free-brands-svg-icons'
 import { faInstagram } from '@fortawesome/free-brands-svg-icons'
 import { faBasketball, faBook, faAtom, faFilm, faCode } from "@fortawesome/free-solid-svg-icons"
- 
+import { faPaintBrush } from '@fortawesome/free-solid-svg-icons'
+import { faPagelines } from '@fortawesome/free-brands-svg-icons'
 
 const Navbar = () => {
 
@@ -54,7 +55,7 @@ const Navbar = () => {
     
   return (
     <header className={!smallNav ? 'navbar' : 'small-navbar'}>
-        <h1 className='navbar-title' onClick={() => navigate("/")}>Life Blog</h1>
+        <h1 className='navbar-title'><Link to="/">Life Blog</Link></h1>
         <hr />
         <p className='navbar-myname'>Altai Gantumur</p>
         <p className='navbar-myemail'>bbyyydriver@gmail.com</p>
@@ -79,7 +80,7 @@ const Navbar = () => {
                 </h2>
                 <h2 className='navbar-menu-title'>
                     <FontAwesomeIcon icon={faBook} />
-                    Books 
+                    Books
                 </h2>
                 <h2 className='navbar-menu-title'>
                     <FontAwesomeIcon icon={faAtom} />
@@ -89,6 +90,15 @@ const Navbar = () => {
                      <FontAwesomeIcon icon={faFilm} />
                     Movies
                 </h2>
+                <h2 className='navbar-menu-title'>
+                     <FontAwesomeIcon icon={faPaintBrush} />
+                    Art and Drawing
+                </h2>
+                <h2 className='navbar-menu-title'>
+                     <FontAwesomeIcon icon={faPagelines} />
+                    Other
+                </h2>
+                
                 </>
             ) : (
                  !menuClicked
@@ -106,7 +116,7 @@ const Navbar = () => {
                         </h2>
                         <h2 className='navbar-menu-title'>
                             <FontAwesomeIcon icon={faBook} className='book-icon'/>
-                            Books 
+                            Books
                         </h2>
                         <h2 className='navbar-menu-title'>
                             <FontAwesomeIcon icon={faAtom} />
@@ -115,6 +125,14 @@ const Navbar = () => {
                         <h2 className='navbar-menu-title'>
                             <FontAwesomeIcon icon={faFilm} />
                             Movies
+                        </h2>
+                        <h2 className='navbar-mene-title'>
+                            <FontAwesomeIcon icon={faPaintBrush} />
+                            Art and Drawing
+                        </h2>
+                        <h2 className='navbar-mene-title'>
+                            <FontAwesomeIcon icon={faPagelines} />
+                            Other
                         </h2>
                         </>
                     )

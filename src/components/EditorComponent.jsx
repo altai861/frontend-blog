@@ -17,6 +17,16 @@ import useAxiosPrivate from '../hooks/useAxiosPrivate';
 import { useNavigate } from 'react-router-dom';
 
 
+const TYPES = {
+  "1": "Programming",
+  "2": "Basketball and Training",
+  "3": "Books",
+  "4": "Health and Science",
+  "5": "Movies",
+  "6": "Art and Drawing",
+  "7": "Other",
+}
+
 const DEFAULT_INITIAL_DATA = {
   "time": new Date().getTime(),
   "blocks": [
@@ -39,6 +49,7 @@ const EditorComponent = () => {
 
   const [title, setTitle] = useState('');
   const [cover, setCover] = useState('')
+  const [type, setType] = useState('')
 
   const navigate = useNavigate();
 
@@ -112,9 +123,12 @@ const EditorComponent = () => {
                 content: content,
                 title, 
                 cover,
-                published: false
+                published: false,
+                type,
             })
             console.log(response.data)
+            console.log(type)
+            alert('Blog Post Saved')
         } catch (err) {
             console.error(err)
         }
@@ -126,8 +140,8 @@ const EditorComponent = () => {
   const publish = async () => {
     if (ejInstance.current) {
       const content = await ejInstance.current.saver.save()
-      if (!title || !cover || !isImage(cover)) {
-        alert("To publish, you need title and cover page");
+      if (!title || !cover || !isImage(cover) || !type) {
+        alert("To publish, you need title, cover page, and blog type");
         return
       }
         try {
@@ -137,6 +151,7 @@ const EditorComponent = () => {
                 published: true,
                 title: title,
                 cover: cover,
+                type,
             })
             console.log(response.data)
             navigate("/admin")
@@ -174,7 +189,7 @@ const EditorComponent = () => {
 
   
   return (
-    <div className="new-blog-editor">
+    <main className="new-blog-editor">
       <label htmlFor="title">Title: </label>
       <input 
         type="text"
@@ -190,6 +205,18 @@ const EditorComponent = () => {
         onChange={(e) => setCover(e.target.value)}
       />
       { cover && <img className="cover-image" src={cover}/> }
+
+      <label htmlFor='type-select'>Type of Blog: </label>
+      <select id="type-select" value={type || ''} onChange={(e) => setType(e.target.value)}>
+        <option value="">Select blog type</option>
+        <option value="1">Programming</option>
+        <option value="2">Basketball and Training</option>
+        <option value="3">Books</option>
+        <option value="4">Health and Science</option>
+        <option value="5">Movies</option>
+        <option value="6">Art and Drawing</option>
+        <option value="7">Other</option>
+      </select>
       
       <div id="editorjs">
 
@@ -206,7 +233,7 @@ const EditorComponent = () => {
           Delete
         </button>
       </div>
-    </div>
+    </main>
   )
 };
 

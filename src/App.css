@@ -5,8 +5,10 @@
 }
 
 .App main {
+    width: 100%;
     padding: 2rem;
 }
+
 
 
 .navbar {
@@ -39,6 +41,11 @@
 
 .navbar-title {
     font-weight: 700;
+}
+
+.navbar-title a{
+    text-decoration: none;
+    color: white;
 }
 
 .navbar hr {
@@ -83,7 +90,7 @@
 @media screen and (max-width: 992px) {
     .navbar {
         width: 100vw;
-        height: 600px;
+        height: 700px;
         position: static;
     }
 
@@ -162,16 +169,6 @@
     margin: 1rem;
 }
 
-.new-blog-post {
-    padding: 1rem;
-}
-
-.blog-post-editor, .draft-editor, .new-blog-editor {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
 
 .cover-image {
     margin-top: 1rem;
@@ -202,8 +199,9 @@
     height: 10rem;
     display: flex;
     padding: 1rem;
+    border: 1px solid black ;
     border-radius: 1rem;
-    background-color: #a9c089;
+    background-color: white;
     margin: 1rem;
 }
 
@@ -211,3 +209,17 @@
     border-radius: 5px;
     margin-right: 1rem;
 }
+
+.blog-post-editor, .draft-editor, .new-blog-editor {
+    margin: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.new-blog-editor select {
+    margin-bottom: 1rem;
+}
+
+

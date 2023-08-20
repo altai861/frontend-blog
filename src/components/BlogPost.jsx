@@ -25,6 +25,7 @@ const BlogPost = () => {
 
     const [title, setTitle] = useState('');
   const [cover, setCover] = useState('')
+  const [type, setType] = useState('');
 
   const [publishedORNot, setPublishedOrNot] = useState();
   
@@ -93,6 +94,7 @@ const BlogPost = () => {
             setTitle(response.data.title)
             setCover(response.data.cover)
             setPublishedOrNot(response.data.published)
+            setType(response.data.type)
             setInitialData(response.data.content)
         } catch (err) {
             console.error(err)
@@ -116,9 +118,11 @@ const BlogPost = () => {
                     content: content,
                     title,
                     cover,
-                    published: publishedORNot
+                    published: publishedORNot,
+                    type,
                 })
                 console.log(response.data)
+                alert('Blog Post Saved')
             } catch (err) {
                 console.error(err)
             }
@@ -130,8 +134,8 @@ const BlogPost = () => {
     const unpublish = async () => {
         if (ejInstance.current) {
             const content = await ejInstance.current.saver.save()
-            if (!title || !cover || !isImage(cover)) {
-              alert("To unpublish, you need title and cover page");
+            if (!title || !cover || !isImage(cover || !type)) {
+              alert("To unpublish, you need title, cover page and blog type");
               return
             }
               try {
@@ -141,6 +145,7 @@ const BlogPost = () => {
                       published: false,
                       title: title,
                       cover: cover,
+                      type,
                   })
                   console.log(response.data)
                   navigate('/admin')
@@ -186,7 +191,7 @@ const BlogPost = () => {
   
     
     return (
-      <div className="blog-post-editor">
+      <main className="blog-post-editor">
         <label htmlFor="title">Title: </label>
       <input 
         type="text"
@@ -202,6 +207,19 @@ const BlogPost = () => {
         onChange={(e) => setCover(e.target.value)}
       />
       { cover && <img className="cover-image" src={cover}/> }
+
+      <label htmlFor='type-select'>Type of Blog: </label>
+      <select id="type-select" value={type || ''} onChange={(e) => setType(e.target.value)}>
+      <option value="">Select blog type</option>
+        <option value="1">Programming</option>
+        <option value="2">Basketball and Training</option>
+        <option value="3">Books</option>
+        <option value="4">Health and Science</option>
+        <option value="5">Movies</option>
+        <option value="6">Art and Drawing</option>
+        <option value="7">Other</option>
+      </select>
+
         <div id="editorjs">
   
         </div>
@@ -216,7 +234,7 @@ const BlogPost = () => {
             Delete
         </button>
         </div>
-      </div>
+      </main>
     )
 }
 

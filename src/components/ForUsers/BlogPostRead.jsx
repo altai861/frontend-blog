@@ -94,73 +94,6 @@ const BlogPost = () => {
             console.error(err)
         }
     }
-
-    function isImage(url) {
-        return /\.(jpg|jpeg|png|webp|avif|gif|svg)$/.test(url);
-      }
-  
-    const save = async () => {
-        if (ejInstance.current) {
-          const content = await ejInstance.current.saver.save()
-          if (!title || !cover || !isImage(cover)) {
-            alert("To save published post, you need title and cover page");
-            return
-          }
-            try {
-                const response = await axiosPrivate.patch('/blogs', {
-                    id: blog_id,
-                    content: content,
-                    title,
-                    cover,
-                    published: publishedORNot
-                })
-                console.log(response.data)
-            } catch (err) {
-                console.error(err)
-            }
-    
-          console.log(content);
-        }
-      }
-
-    const unpublish = async () => {
-        if (ejInstance.current) {
-            const content = await ejInstance.current.saver.save()
-            if (!title || !cover || !isImage(cover)) {
-              alert("To unpublish, you need title and cover page");
-              return
-            }
-              try {
-                  const response = await axiosPrivate.patch('/blogs', {
-                      id: blog_id,
-                      content: content,
-                      published: false,
-                      title: title,
-                      cover: cover,
-                  })
-                  console.log(response.data)
-                  navigate('/admin')
-              } catch (err) {
-                  console.error(err)
-              }
-      
-            console.log(content);
-          }
-    }
-
-    const deleteBlog = async () => {
-        if (ejInstance.current) {
-            try {
-                const response = await axiosPrivate.delete(`/blogs/${blog_id}`, {
-                    id: blog_id,
-                })
-                console.log(response.data)
-                navigate('/admin');
-            } catch (err) {
-                console.error(err)
-            }
-        }
-      }
   
     useEffect(() => {
       if (ejInstance.current === null) {
@@ -182,13 +115,13 @@ const BlogPost = () => {
   
     
     return (
-      <div className="blog-post-editor">
+      <main className="blog-post-editor">
        <h2>{title}</h2>
        <img src={cover}/>
         <div id="editorjs">
   
         </div>
-      </div>
+      </main>
     )
 }
 
