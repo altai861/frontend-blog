@@ -18,11 +18,14 @@ import Health from './components/ForUsers/Health'
 import Movies from './components/ForUsers/Movies'
 import Art from './components/ForUsers/Art'
 import Other from './components/ForUsers/Other'
+import { BrowserRouter } from 'react-router-dom'
 
 
 function App() {
 
   return (
+    <BrowserRouter>
+    
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route exact path="/" element={<Home />} />
@@ -53,6 +56,7 @@ function App() {
         
       </Route>
     </Routes>
+    </BrowserRouter>
   )
 }
 
